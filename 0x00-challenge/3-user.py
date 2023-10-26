@@ -19,7 +19,7 @@ class User():
         - Assign a unique `id`
         """
         self.id = str(uuid.uuid4())
-        self.__password = None  # Use double underscore for a private attribute
+        self.__password = None
 
     @property
     def password(self):
@@ -36,7 +36,7 @@ class User():
         - `None` if `pwd` is not a string
         - Hash `pwd` in MD5 before assigning to `__password`
         """
-        if pwd is None or not isinstance(pwd, str):  # Use `isinstance` to check if it's a string
+        if pwd is None or type(pwd) is not str:
             self.__password = None
         else:
             self.__password = hashlib.md5(pwd.encode()).hexdigest().lower()
@@ -49,7 +49,7 @@ class User():
         - `False` if `__password` is `None`
         - Compare `__password` and the MD5 value of `pwd`
         """
-        if pwd is None or not isinstance(pwd, str):  # Use `isinstance` to check if it's a string
+        if pwd is None or type(pwd) is not str:
             return False
         if self.__password is None:
             return False
